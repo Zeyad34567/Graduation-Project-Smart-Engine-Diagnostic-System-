@@ -1,0 +1,35 @@
+name: engine_fault_ai
+description: "AI-based engine fault detection application."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  file_picker: ^8.1.2
+  path_provider: ^2.1.2
+  permission_handler: ^11.3.1
+  device_info_plus: ^10.1.0 
+  ffmpeg_kit_flutter_new: 4.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+  - assets/random_forest_v1.json
+  - assets/ood_gate_rf_v1.json
+  - assets/config.json
+  - assets/ood_gate_config.json
+  - assets/engine_knowledge_base.json

@@ -1,0 +1,14 @@
+{
+  "confidence_threshold": 0.6,
+  "ood_threshold": 0.5,
+  "model_version": "rf_v1",
+  "n_classes": 12,
+  "normal_class_idx": 5,
+  "sample_rate": 22050,
+  "duration_sec": 5,
+  "target_samples": 110250,
+  "ood_image_size": 128,
+  "n_features": 418,
+  "test_accuracy": 0.9328,
+  "oob_score": 0.9914
+}

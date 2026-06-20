@@ -1,0 +1,597 @@
+{
+  "Crankshaft Bearing Noise": {
+    "fault_name": "Crankshaft Bearing Noise",
+    "description": "The main bearings supporting the crankshaft are worn or damaged, causing deep rhythmic knocking that worsens under engine load.",
+    "severity": "Critical",
+    "priority": 1,
+    "safe_to_drive": false,
+    "driving_instruction": "Stop the engine immediately and do not restart. Call for towing.",
+    "possible_causes": [
+      "Severe oil starvation or oil pressure loss",
+      "Bearing wear from extended high-mileage operation",
+      "Contaminated or degraded engine oil",
+      "Previous unresolved lubrication system failure"
+    ],
+    "recommended_actions": [
+      "Stop driving immediately and turn off the engine",
+      "Do not attempt to restart the vehicle",
+      "Arrange towing to a certified mechanic",
+      "Request full crankshaft and bearing inspection",
+      "Check oil pressure system before any repair"
+    ],
+    "risks_if_ignored": [
+      "Complete engine seizure within minutes of continued operation",
+      "Crankshaft journal damage requiring full replacement",
+      "Catastrophic engine destruction with no repair possibility",
+      "Connecting rod failure causing block damage"
+    ],
+    "repair_cost_min": 8000,
+    "repair_cost_max": 25000,
+    "repair_notes": "Cost highly dependent on crankshaft condition — resurfacing vs full replacement.",
+    "urgency_hours": 0,
+    "mechanic_description": "A heavy, resonant knocking from deep in the bottom of the engine block points straight at the main bearings — the large bearings that cradle the crankshaft in the block. When these go, it's the most serious mechanical failure short of a seized engine, and the clock is ticking.",
+    "root_causes_detailed": [
+      "Chronic neglect of oil changes breaking down lubrication until metal touches metal",
+      "an oil pump that's failed or gotten clogged, starving the whole bottom end",
+      "a bearing that's spun in its bore during an oil starvation event",
+      "incorrect bearing clearances set during a prior engine build",
+      "plain old high-mileage fatigue"
+    ],
+    "when_it_appears": "You'll hear it at idle, you'll hear it under load, you'll hear it everywhere — but it's deepest and slowest at idle. The low oil pressure warning light is often glowing at the same time. Give it more throttle and it sounds even worse. It's lower-pitched and more ominous than anything else the engine makes.",
+    "sound_analysis": "Think of a deep, booming, rhythmic knock that seems to echo inside the block itself. It's noticeably heavier and slower-sounding than the upper-engine ticks and pings. In bad cases you might hear two distinct knocks per revolution if more than one main bearing is involved. It resonates through the whole car body.",
+    "repair_steps": [
+      "Shut the engine down right now — this is an emergency stop situation",
+      "Check actual oil pressure with a mechanical gauge, not just the dashboard light",
+      "Drain the oil and drop the oil pan for a direct look at the main bearings",
+      "Mic the crankshaft main journals against the factory spec sheet",
+      "Fit new main bearings in the correct size — standard or undersize depending on journal measurement",
+      "If the crank journals are damaged or worn undersized, get the crank reground or source a replacement",
+      "Reassemble to spec, fill with fresh oil, and pre-lube the engine with a priming tool before the first start",
+      "Run an oil pressure test before any extended driving.\n\nRequired Tools: Engine hoist, oil pan removal kit, micrometer set, plastigage, torque wrench, bearing extractor, oil pressure test kit"
+    ],
+    "required_tools": []
+  },
+  "Rod Knock": {
+    "fault_name": "Rod Knock",
+    "description": "A connecting rod bearing has failed, causing metal-to-metal contact between the rod and crankshaft journal. This is one of the most serious engine faults.",
+    "severity": "Critical",
+    "priority": 1,
+    "safe_to_drive": false,
+    "driving_instruction": "Stop the engine immediately. Continued operation will destroy the engine.",
+    "possible_causes": [
+      "Oil starvation to the connecting rod bearing",
+      "Spun or seized connecting rod bearing",
+      "Oil pump failure causing pressure loss",
+      "Extended operation with low oil level",
+      "Incorrect bearing clearance from previous repair"
+    ],
+    "recommended_actions": [
+      "Stop engine immediately",
+      "Do not restart under any circumstances",
+      "Arrange immediate towing",
+      "Request connecting rod and crankshaft journal inspection",
+      "Prepare for possible full engine replacement"
+    ],
+    "risks_if_ignored": [
+      "Connecting rod ejection through engine block",
+      "Complete and irreparable engine destruction",
+      "Fire risk from oil leak onto hot exhaust",
+      "Sudden loss of power at highway speed"
+    ],
+    "repair_cost_min": 6000,
+    "repair_cost_max": 20000,
+    "repair_notes": "If caught early, bearing replacement may suffice. Late detection typically requires engine replacement.",
+    "urgency_hours": 0,
+    "mechanic_description": "A heavy, deep knock from low in the engine is one of the scariest sounds a driver can hear — it usually means a connecting rod bearing is shot and the rod is literally knocking against the crankshaft with every rotation. This one doesn't fix itself and gets worse fast.",
+    "root_causes_detailed": [
+      "Skipping oil changes for too long and running the engine on dirty, degraded oil",
+      "losing oil pressure suddenly from a leak or pump failure",
+      "using the wrong oil weight for the engine",
+      "a bearing spinning in its housing after an oil starvation incident",
+      "a high-mileage engine simply worn beyond its limits"
+    ],
+    "when_it_appears": "You'll hear it at every RPM, but it's especially loud and slow at idle. It gets noticeably worse the moment you give it throttle. A classic trick is pulling spark plug wires one at a time — when you pull the wire for the affected cylinder, the knock will quiet down noticeably.",
+    "sound_analysis": "Deep, hollow, heavy knocking from the bottom of the engine that repeats once per revolution. It's slower and more powerful-sounding than a valve tick or detonation ping — almost like someone throwing a rock inside the engine block. It gets louder as things heat up and oil thins.",
+    "repair_steps": [
+      "Kill the engine right now — every second of running makes it worse",
+      "Drain the oil and look for silvery metallic flakes — that's bearing material",
+      "Pull the oil pan off to get eyes on the rod bearings",
+      "Measure the crankshaft journals with a micrometer",
+      "Replace the worn rod bearings — or go oversized if the journals are underspec",
+      "Regrind or replace the crank if it's damaged past the limit",
+      "Button everything up with fresh oil and proper torque",
+      "Run an oil pressure test before the first restart.\n\nRequired Tools: Engine hoist, torque wrench, micrometer set, bearing extractor, oil pump test kit, plastigage, socket set"
+    ],
+    "required_tools": []
+  },
+  "Piston Slap": {
+    "fault_name": "Piston Slap",
+    "description": "Worn pistons are rocking in the cylinder bore, creating a hollow knocking sound that is typically louder when the engine is cold and diminishes as it warms up.",
+    "severity": "High",
+    "priority": 2,
+    "safe_to_drive": true,
+    "driving_instruction": "Limit driving to essential trips only. Avoid high RPM and heavy engine load.",
+    "possible_causes": [
+      "Excessive piston-to-cylinder wall clearance from wear",
+      "Worn or collapsed piston rings",
+      "Cylinder wall scoring or oval wear pattern",
+      "Extended operation without oil changes"
+    ],
+    "recommended_actions": [
+      "Reduce engine load and avoid high RPM operation",
+      "Check and maintain correct oil level",
+      "Use a slightly higher viscosity oil as temporary measure",
+      "Schedule engine inspection within 1-2 weeks",
+      "Request cylinder bore measurement and piston inspection"
+    ],
+    "risks_if_ignored": [
+      "Progressive cylinder wall damage",
+      "Increased oil consumption leading to oil starvation",
+      "Piston ring failure and loss of compression",
+      "Eventual engine seizure if oil consumption is not managed"
+    ],
+    "repair_cost_min": 4000,
+    "repair_cost_max": 15000,
+    "repair_notes": "Repair requires engine disassembly. Cost depends on whether boring and oversized pistons are needed.",
+    "urgency_hours": 72,
+    "mechanic_description": "That hollow slapping or clunking from inside the engine block happens when a piston has too much room to rock sideways in its cylinder bore. Instead of traveling straight up and down, it's knocking against the cylinder wall on each stroke — and it's telling you the bore or piston is worn.",
+    "root_causes_detailed": [
+      "The cylinder wall has worn oval or oversized from years of use",
+      "the piston skirt has worn down and lost its tight fit in the bore",
+      "someone rebuilt the engine with the wrong piston clearance",
+      "detonation events hammered the pistons hard enough to distort them",
+      "wrong piston material that doesn't expand correctly with heat"
+    ],
+    "when_it_appears": "This one is famous for being loud and obvious on a cold start, then fading away or even disappearing completely once the engine is fully warmed up. That's because pistons expand as they heat up, taking up the excess clearance. Noise that sticks around after full warmup means the clearance is beyond what heat can fix.",
+    "sound_analysis": "Dull, hollow slapping or knocking — not the sharp crack of detonation or the metallic clang of rod knock. It has a slightly muffled quality, like something plastic rattling inside a metal box. The sound changes with throttle input but doesn't track RPM as precisely as bearing noises do.",
+    "repair_steps": [
+      "Confirm the noise fades completely when fully warm — if it does, piston slap is confirmed",
+      "Run a compression test on every cylinder to see how the rings are holding up",
+      "Follow up with a cylinder leakdown test to measure exactly how much seal is left",
+      "If clearances are beyond limits, you're into an engine teardown",
+      "Measure each cylinder bore with a bore gauge to quantify the wear",
+      "Have the cylinders bored to the next oversize and honed to spec",
+      "Install matched oversized pistons with fresh ring sets",
+      "Rebuild the engine to factory clearance specs throughout.\n\nRequired Tools: Compression tester, cylinder leakdown tester, bore gauge, piston ring compressor, engine hoist, torque wrench, honing tool or machinist service"
+    ],
+    "required_tools": []
+  },
+  "Engine Knocking": {
+    "fault_name": "Engine Knocking",
+    "description": "Abnormal combustion (detonation) is occurring before the spark plug fires, creating sharp knocking sounds that worsen under load or acceleration.",
+    "severity": "High",
+    "priority": 2,
+    "safe_to_drive": true,
+    "driving_instruction": "Avoid hard acceleration and high engine load. Reduce speed and schedule service soon.",
+    "possible_causes": [
+      "Low-octane fuel being used in a high-compression engine",
+      "Ignition timing too advanced",
+      "Carbon buildup on piston crowns creating hot spots",
+      "Faulty knock sensor not retarding timing",
+      "Overheating engine"
+    ],
+    "recommended_actions": [
+      "Switch to the manufacturer-recommended fuel octane rating immediately",
+      "Reduce engine load and avoid sudden acceleration",
+      "Check coolant level and temperature gauge",
+      "Have ignition timing inspected",
+      "Request knock sensor diagnostic scan"
+    ],
+    "risks_if_ignored": [
+      "Piston crown erosion and failure",
+      "Head gasket damage from thermal stress",
+      "Valve and spark plug damage",
+      "Catalytic converter damage from misfiring"
+    ],
+    "repair_cost_min": 500,
+    "repair_cost_max": 5000,
+    "repair_notes": "If caused by fuel grade, cost is zero. Sensor or timing issues are inexpensive. Piston damage is costly.",
+    "urgency_hours": 48,
+    "mechanic_description": "That pinging or knocking under the hood happens when fuel in the cylinder lights off at the wrong moment — too early or in an uncontrolled burst. It's called detonation, and besides the noise, it hammers the pistons hard enough to cause real damage over time.",
+    "root_causes_detailed": [
+      "Running cheap low-octane gas in an engine that needs premium",
+      "carbon crud building up inside the cylinders and creating hot spots",
+      "ignition timing that's too far advanced",
+      "the mixture running too lean from a bad sensor or air leak",
+      "the engine overheating"
+    ],
+    "when_it_appears": "Worst when you're putting the engine under stress — merging onto a highway, towing, or going uphill. The knock sensor tries to compensate by pulling timing back, so you'll often notice a power drop alongside the noise.",
+    "sound_analysis": "Sharp, rapid metallic pinging that comes from inside the block and gets faster as you rev up. Unlike rod knock, it tends to back off when you lift the throttle and let the load drop. Think of it as a hard, tinny tap that follows every power stroke.",
+    "repair_steps": [
+      "Put in higher-octane fuel right away",
+      "Plug in an OBD-II scanner and pull any stored fault codes",
+      "Test the EGR valve and clean or replace it",
+      "Swap out a faulty knock sensor if codes point to it",
+      "Check ignition timing with a timing light and correct it",
+      "Run a carbon cleaning procedure — walnut blasting or a chemical intake clean",
+      "Verify the coolant temp sensor is reading accurately",
+      "Check air-fuel ratio with a wideband oxygen sensor.\n\nRequired Tools: OBD-II scanner, timing light, compression tester, carbon cleaning kit, fuel system cleaner, torque wrench"
+    ],
+    "required_tools": []
+  },
+  "Alternator Bearing Noise": {
+    "fault_name": "Alternator Bearing Noise",
+    "description": "The bearing inside the alternator is failing, producing a whining or grinding sound that changes with engine RPM.",
+    "severity": "High",
+    "priority": 2,
+    "safe_to_drive": true,
+    "driving_instruction": "Drive only short distances. A seized alternator will stall the engine and drain the battery.",
+    "possible_causes": [
+      "Normal bearing wear from age and mileage",
+      "Alternator belt overtightened causing bearing overload",
+      "Water or dust contamination of the bearing",
+      "Electrical overload causing bearing overheating"
+    ],
+    "recommended_actions": [
+      "Have the alternator inspected within 24-48 hours",
+      "Check battery charge level",
+      "Avoid long trips until repaired",
+      "Listen for changes in sound intensity — worsening means imminent failure",
+      "Request belt tension inspection alongside alternator service"
+    ],
+    "risks_if_ignored": [
+      "Alternator seizure causing belt failure and engine stall",
+      "Complete battery drain leaving vehicle inoperable",
+      "Secondary damage to other belt-driven components"
+    ],
+    "repair_cost_min": 800,
+    "repair_cost_max": 3000,
+    "repair_notes": "Bearing replacement is cheaper than full alternator replacement. Request bearing-only repair if available.",
+    "urgency_hours": 48,
+    "mechanic_description": "That whining or grinding you hear from the alternator area comes from its internal bearings giving out. When these small bearings wear through their grease or get contaminated, they can't spin quietly anymore and start howling.",
+    "root_causes_detailed": [
+      "Too many miles without replacement",
+      "bearing grease dries out over time",
+      "oil or coolant dripping onto the alternator destroys the lubrication",
+      "running too many electrical accessories at once overloads the unit and cooks the bearings"
+    ],
+    "when_it_appears": "You'll catch it most when sitting at a red light at idle, and it gets louder every time you rev the engine. Flipping on the headlights or cranking the A/C usually makes it worse immediately.",
+    "sound_analysis": "It sounds like a high-pitched whine that rises and falls exactly with your engine speed. As things get worse, it can turn into a gritty grinding tone. The dead giveaway is that the pitch tracks the RPM gauge almost perfectly.",
+    "repair_steps": [
+      "Disconnect the negative battery cable first — always",
+      "Listen with a stethoscope to confirm the alternator is the culprit",
+      "Release the belt tensioner and pull the serpentine belt off",
+      "Unbolt the alternator from its bracket",
+      "Crack it open and press the bad bearing out with a hydraulic press",
+      "Press a new correct-spec bearing in and reassemble",
+      "Bolt the alternator back in and refit the belt",
+      "Reconnect the battery and start the engine — the whine should be gone.\n\nRequired Tools: Mechanic's stethoscope, socket set (3/8\" & 1/2\" drive), serpentine belt tool, bearing puller/press, torque wrench, multimeter"
+    ],
+    "required_tools": []
+  },
+  "Timing Belt Noise": {
+    "fault_name": "Timing Belt Noise",
+    "description": "The timing belt or its tensioner and idler pulleys are worn, loose, or misaligned, producing rattling or slapping sounds from the front of the engine.",
+    "severity": "High",
+    "priority": 2,
+    "safe_to_drive": false,
+    "driving_instruction": "Do not drive. A broken timing belt causes immediate and severe engine damage with no warning.",
+    "possible_causes": [
+      "Timing belt worn beyond service interval",
+      "Belt tensioner spring failure causing slack",
+      "Idler pulley bearing failure",
+      "Oil contamination weakening the belt",
+      "Improper belt tension from previous service"
+    ],
+    "recommended_actions": [
+      "Check the timing belt service history immediately",
+      "Do not drive until belt condition is verified by a mechanic",
+      "Request tensioner and idler pulley inspection alongside belt",
+      "Replace belt, tensioner, and idler as a complete kit",
+      "Check for oil leaks that may be contaminating the belt"
+    ],
+    "risks_if_ignored": [
+      "Belt snap causing immediate engine shutdown",
+      "Valve-to-piston contact destroying the engine internally",
+      "Complete engine replacement required after belt failure",
+      "No warning before failure — belt snaps suddenly"
+    ],
+    "repair_cost_min": 1500,
+    "repair_cost_max": 4000,
+    "repair_notes": "Always replace tensioner and idler with the belt. Skipping these leads to repeat failure.",
+    "urgency_hours": 0,
+    "mechanic_description": "Squealing, slapping, or chirping from the front of the engine tied to the timing belt is a serious warning sign. The timing belt controls exactly when your valves open and close — if it breaks or slips, you're likely looking at bent valves and a destroyed engine.",
+    "root_causes_detailed": [
+      "The belt gets old, glazes over, and starts cracking",
+      "the tensioner bearing wears out and lets the belt flutter",
+      "an idler pulley goes rough and starts dragging the belt sideways",
+      "oil leaking past a cam or crank seal soaks the belt and weakens it",
+      "whoever last changed the belt set the tension wrong"
+    ],
+    "when_it_appears": "Often shows up during cold starts and sometimes calms down once everything warms up. A dying tensioner bearing might make the noise come and go unpredictably. If you're hearing a slapping sound, the belt tension is critically low and needs attention immediately.",
+    "sound_analysis": "A failing tensioner sounds like a constant whine that stays steady regardless of throttle position. A loose belt makes a more irregular slapping or flapping sound from behind the timing cover. Either way, it comes from the very front of the engine.",
+    "repair_steps": [
+      "Pop off the upper and lower timing covers to get a look at the belt",
+      "Check the belt for cracking, fraying, glazing, or oil soaking",
+      "Spin the tensioner and idler pulleys by hand — feel for roughness or wobble",
+      "Check cam and crank seals for leaks that could have soaked the belt",
+      "Replace the whole kit — belt, tensioner, idler, and water pump together",
+      "Set the belt tension precisely using a gauge or manufacturer's method",
+      "Reinstall the covers and double-check all timing marks",
+      "Take it for a 15-minute drive and peek at everything again.\n\nRequired Tools: Timing belt kit, tension gauge, crankshaft holding tool, torque wrench, socket set, flashlight"
+    ],
+    "required_tools": []
+  },
+  "Exhaust Leak": {
+    "fault_name": "Exhaust Leak",
+    "description": "Hot exhaust gases are escaping from a crack or failed gasket in the exhaust system, producing a ticking or hissing sound that is loudest when the engine is cold.",
+    "severity": "Medium",
+    "priority": 3,
+    "safe_to_drive": true,
+    "driving_instruction": "Drive with windows open. Carbon monoxide from exhaust leaks is dangerous in enclosed spaces.",
+    "possible_causes": [
+      "Blown exhaust manifold gasket from heat cycling",
+      "Cracked exhaust manifold",
+      "Loose or corroded exhaust pipe connections",
+      "Damaged flex pipe section"
+    ],
+    "recommended_actions": [
+      "Drive with windows open until repaired",
+      "Never run the engine in an enclosed space",
+      "Have exhaust system inspected within 1 week",
+      "Listen for the ticking sound — location helps mechanic diagnose crack vs gasket"
+    ],
+    "risks_if_ignored": [
+      "Carbon monoxide poisoning risk to vehicle occupants",
+      "Crack propagation making repair more expensive",
+      "Oxygen sensor damage from unmetered air",
+      "Failed emissions inspection"
+    ],
+    "repair_cost_min": 300,
+    "repair_cost_max": 2000,
+    "repair_notes": "Gasket replacement is inexpensive. Cracked manifold replacement is significantly more costly.",
+    "urgency_hours": 168,
+    "mechanic_description": "A ticking or sharp popping from the engine bay that sounds suspiciously like a valve train problem is often actually hot exhaust gas blasting through a crack or failed gasket before it reaches the muffler. The sound sneaks out wherever the seal has broken down.",
+    "root_causes_detailed": [
+      "The exhaust manifold gasket burns through after years of heat cycling",
+      "the manifold itself develops cracks from constant thermal expansion and contraction",
+      "manifold bolts back off and loosen over time",
+      "flex pipes rust through",
+      "sloppy installation of an aftermarket exhaust system"
+    ],
+    "when_it_appears": "Easiest to hear right after a cold start because the metal parts are still contracted and the gaps are at their widest. Gaps tend to shrink once everything heats up and expands, so the ticking often fades after a few minutes of driving but returns every cold morning.",
+    "sound_analysis": "It sounds like a steady tick or rhythmic popping right in sync with the engine. The trick to telling it apart from a valve tick is location — get a stethoscope near the exhaust manifold and you'll find it immediately. Revving the engine briefly makes it louder and more obvious.",
+    "repair_steps": [
+      "Start the engine cold and sweep a stethoscope around the exhaust manifold area to zero in on it",
+      "Look carefully at the manifold, gaskets, and flange connections for obvious cracks or gaps",
+      "Snug up any loose manifold bolts to factory torque",
+      "If the gasket is toast, pull the manifold, clean both surfaces, and fit a new gasket",
+      "Weld cracked sections or replace the manifold outright if it's badly damaged",
+      "Use exhaust sealant on pipe flanges where appropriate",
+      "Fire it back up and check that the ticking is gone.\n\nRequired Tools: Mechanic's stethoscope, socket set, torque wrench, exhaust manifold gasket set, MIG welder (if welding), exhaust sealant"
+    ],
+    "required_tools": []
+  },
+  "Vacuum Leak": {
+    "fault_name": "Vacuum Leak",
+    "description": "Unmetered air is entering the engine through a cracked hose, failed gasket, or loose fitting, causing rough idle and poor fuel economy.",
+    "severity": "Low",
+    "priority": 4,
+    "safe_to_drive": true,
+    "driving_instruction": "Safe to drive normally. Schedule service within 2 weeks.",
+    "possible_causes": [
+      "Cracked or brittle vacuum hose from age",
+      "Intake manifold gasket failure",
+      "Loose throttle body connection",
+      "Failed PCV valve or hose",
+      "Brake booster vacuum line crack"
+    ],
+    "recommended_actions": [
+      "Note if idle is rough or unstable — this confirms the leak",
+      "Check fuel consumption — vacuum leaks increase it noticeably",
+      "Have a smoke test performed to locate the exact leak source",
+      "Request inspection of all vacuum lines, not just the obvious ones"
+    ],
+    "risks_if_ignored": [
+      "Progressive worsening of fuel economy",
+      "Check engine light activation",
+      "Rough idle developing into stalling",
+      "Lean mixture causing long-term engine wear"
+    ],
+    "repair_cost_min": 200,
+    "repair_cost_max": 1000,
+    "repair_notes": "Hose replacement is very cheap. Manifold gasket replacement is more involved but still moderate cost.",
+    "urgency_hours": 336,
+    "mechanic_description": "That hissing you hear near the intake isn't just annoying — it's unmetered air sneaking into the engine past a cracked hose or bad gasket. Your engine's computer thinks it's getting a certain amount of air, but it's actually getting more, which throws the fuel mixture off and causes all kinds of running problems.",
+    "root_causes_detailed": [
+      "Old rubber vacuum hoses that have cracked and hardened with age",
+      "intake manifold gaskets that have given up and are letting air bypass",
+      "a cracked manifold plenum",
+      "a leaking brake booster diaphragm",
+      "a PCV hose that's popped off",
+      "a busted throttle body gasket",
+      "split intercooler hoses on turbocharged setups"
+    ],
+    "when_it_appears": "The hissing is steady at idle and often improves under throttle because engine vacuum drops when you accelerate. You'll also notice the idle hunting up and down, an unusually high idle speed, fuel economy going south, and probably lean fault codes like P0171 or P0174 stored in the computer.",
+    "sound_analysis": "Steady, high-pitched hissing or sucking sound near the intake manifold or vacuum line routing. The pitch might shift slightly as you blip the throttle. If you carefully spray carb cleaner near a suspected area and the idle jumps, you've found your leak.",
+    "repair_steps": [
+      "Let the engine idle and work a stethoscope around the intake manifold and every vacuum hose connection",
+      "Spray carb cleaner carefully near suspected spots — an RPM spike means you've hit it",
+      "Better yet, use a smoke machine through the intake to see exactly where the smoke escapes",
+      "Swap out any cracked or brittle vacuum hoses",
+      "Retorque or replace intake manifold gaskets if they're leaking",
+      "Replace the throttle body gasket if that's the issue",
+      "Go through the PCV system and replace anything that's deteriorated",
+      "Clear the fault codes and verify the idle is steady and smooth again.\n\nRequired Tools: Smoke machine or carburetor cleaner, OBD-II scanner, vacuum gauge, torque wrench, intake gasket set, hose pliers"
+    ],
+    "required_tools": []
+  },
+  "Valve Tapping": {
+    "fault_name": "Valve Tapping",
+    "description": "One or more engine valves have excessive clearance or a faulty hydraulic lifter, producing a rapid ticking sound from the top of the engine that follows engine RPM.",
+    "severity": "Medium",
+    "priority": 3,
+    "safe_to_drive": true,
+    "driving_instruction": "Safe to drive short distances. Avoid sustained high RPM operation.",
+    "possible_causes": [
+      "Incorrect valve clearance requiring adjustment",
+      "Collapsed or stuck hydraulic valve lifter",
+      "Low oil pressure not reaching the valve train",
+      "Sludge buildup blocking oil passages to lifters",
+      "Worn camshaft lobe"
+    ],
+    "recommended_actions": [
+      "Check oil level and condition immediately",
+      "If oil is dark and thick, change it before driving further",
+      "Use an engine flush if sludge buildup is suspected",
+      "Have valve clearance inspected and adjusted",
+      "Request hydraulic lifter inspection if tapping persists after oil change"
+    ],
+    "risks_if_ignored": [
+      "Valve train wear accelerating camshaft damage",
+      "Valve float at high RPM causing power loss",
+      "Valve seat damage requiring head rebuild",
+      "Progressive oil starvation to upper engine components"
+    ],
+    "repair_cost_min": 500,
+    "repair_cost_max": 3500,
+    "repair_notes": "Simple valve adjustment is cheap. Lifter or camshaft replacement significantly increases cost.",
+    "urgency_hours": 168,
+    "mechanic_description": "That rapid ticking from the top of the engine is the valve train talking to you — specifically the lifters, rocker arms, or camshaft lobes telling you they're not getting enough oil or their clearances are out of spec. It's annoying to hear and damaging to ignore.",
+    "root_causes_detailed": [
+      "Valve clearances that have drifted too far open from wear",
+      "hydraulic lifters that have collapsed and can't hold their oil prime",
+      "sludge buildup in old oil blocking the tiny passages that feed the lifters",
+      "the oil pump not generating enough pressure to keep everything lubricated",
+      "using oil that's too thin for the engine"
+    ],
+    "when_it_appears": "Almost always loudest on a cold start and it'll often quiet right down once the engine is fully warmed up and oil pressure has built up. If the ticking stays loud even after 10–15 minutes of running, the lifters are mechanically worn and oil pressure alone won't fix them.",
+    "sound_analysis": "Fast, high-pitched, consistent ticking from the valve cover area. It runs at half engine speed since the camshaft turns at half the crankshaft's speed. One loud tick usually means one bad lifter; a chorus of ticks means widespread wear across the valve train.",
+    "repair_steps": [
+      "Check your oil level and look at the color — if it's black sludge, do an oil change with a flush additive first",
+      "Add an engine flush treatment to help dissolve accumulated sludge",
+      "Pull the valve covers and look at the lifters and rockers up close",
+      "If your engine has adjustable valve clearances, measure them with a feeler gauge and dial them in to spec",
+      "Pull and replace any collapsed or pitted hydraulic lifters",
+      "While you're in there, check the camshaft lobes for wear",
+      "Verify oil passages are clear and oil pressure is in spec",
+      "Reinstall the covers and take it for a test drive.\n\nRequired Tools: Feeler gauge set, valve cover gaskets, hydraulic lifter removal tool, torque wrench, oil pressure gauge, socket set"
+    ],
+    "required_tools": []
+  },
+  "Chain Noise": {
+    "fault_name": "Chain Noise",
+    "description": "The timing chain, chain tensioner, or chain guides are worn, causing a rattling sound from the front of the engine that is typically loudest on cold start.",
+    "severity": "Medium",
+    "priority": 3,
+    "safe_to_drive": true,
+    "driving_instruction": "Limit driving to necessary trips. Avoid cold starts followed by immediate high load.",
+    "possible_causes": [
+      "Timing chain stretched from wear",
+      "Hydraulic chain tensioner failure",
+      "Plastic chain guide worn or broken",
+      "Low oil pressure reducing tensioner effectiveness",
+      "Extended oil change intervals accelerating chain wear"
+    ],
+    "recommended_actions": [
+      "Have the timing chain system inspected within 1-2 weeks",
+      "Check and maintain correct oil level",
+      "Use manufacturer-specified oil viscosity",
+      "Request tensioner and guide inspection alongside chain",
+      "Ask about timing chain service interval for your specific engine"
+    ],
+    "risks_if_ignored": [
+      "Chain skipping a tooth causing valve timing errors",
+      "Chain snapping causing the same damage as a broken timing belt",
+      "Progressive guide breakage sending plastic into the oil system"
+    ],
+    "repair_cost_min": 1000,
+    "repair_cost_max": 4000,
+    "repair_notes": "Timing chain kits include tensioner and guides — always replace as a complete set.",
+    "urgency_hours": 72,
+    "mechanic_description": "That rattling from the front of the engine on startup is your timing chain slapping around because it's gotten too loose. A stretched chain can't stay tight against its guides and starts banging into them every time the engine fires.",
+    "root_causes_detailed": [
+      "The chain simply stretches after years of use",
+      "old or low oil starves the chain of lubrication and speeds up wear",
+      "the hydraulic tensioner wears out and can't push the chain tight anymore",
+      "plastic chain guides crack and let the chain flap freely"
+    ],
+    "when_it_appears": "Loudest right when you first fire up a cold engine, before oil pressure builds up. It usually quiets down after a minute of running but can come back the moment you decelerate or shut the engine off.",
+    "sound_analysis": "Listen for a metallic clattering or chattering from around the front timing cover. It can be random at idle but turns more constant when you get on the throttle. Sometimes the engine management system flags timing-related fault codes at the same time.",
+    "repair_steps": [
+      "Drain the oil and pull off the valve covers and front timing cover",
+      "Check chain sag with a deflection gauge and replace if it's stretched past the limit",
+      "Pull out the old chain, worn tensioner, and busted guides",
+      "Drop in a full timing chain kit — chain, guides, and tensioner together",
+      "Line up every timing mark carefully as the factory specifies",
+      "Button everything back up with fresh gaskets",
+      "Fill with new oil and filter",
+      "Cold-start the engine and listen — no more rattling.\n\nRequired Tools: Timing chain kit, torque wrench, crankshaft holding tool, chain tensioner release tool, gasket scraper, oil drain pan"
+    ],
+    "required_tools": []
+  },
+  "Worn Pulley Noise": {
+    "fault_name": "Worn Pulley Noise",
+    "description": "An accessory belt pulley bearing is failing, producing a squealing, grinding, or chirping sound from the front of the engine that changes with RPM.",
+    "severity": "Low",
+    "priority": 4,
+    "safe_to_drive": true,
+    "driving_instruction": "Safe to drive short distances. A seized pulley will break the belt and may stall the engine.",
+    "possible_causes": [
+      "Idler pulley bearing worn from age or mileage",
+      "Belt tensioner pulley bearing failure",
+      "Water pump pulley bearing failure",
+      "Pulley misalignment from previous belt service"
+    ],
+    "recommended_actions": [
+      "Have the serpentine belt system inspected within 1 week",
+      "Ask mechanic to check all pulleys while belt is removed",
+      "Replace belt alongside any pulley to avoid repeat service",
+      "Listen for change in sound — a sudden silence means the belt has broken"
+    ],
+    "risks_if_ignored": [
+      "Pulley seizure snapping the serpentine belt",
+      "Loss of power steering, alternator, and water pump simultaneously",
+      "Engine overheating if water pump loses drive"
+    ],
+    "repair_cost_min": 400,
+    "repair_cost_max": 1500,
+    "repair_notes": "Pulley replacement is straightforward. Always replace the belt at the same time.",
+    "urgency_hours": 168,
+    "mechanic_description": "A steady squeal or grinding that seems to come from one of the accessory pulleys on your drive belt system usually means a bearing inside that pulley is worn out and starting to fail. These pulleys spin constantly whenever the engine runs, so their bearings take a real beating.",
+    "root_causes_detailed": [
+      "Bearing seals crack and let water and road grime in",
+      "the bearings simply wear out from years of constant high-speed spinning",
+      "a bracket gets bent and throws the pulley out of alignment",
+      "the belt was tensioned too tightly during a service, overloading the bearing",
+      "road salt and moisture accelerate corrosion inside the bearing"
+    ],
+    "when_it_appears": "There from the moment you start the engine and doesn't go away until you shut it off. The noise usually starts as an occasional chirp and slowly gets louder and more constant over weeks. You can confirm a pulley is the cause by briefly removing the serpentine belt — if the noise vanishes, a pulley was making it.",
+    "sound_analysis": "Unlike engine speed-linked noises, pulley noise tends to stay at a fairly steady pitch because the belt speed doesn't change as dramatically as RPM. You might hear a smooth squeal from a glazed bearing or a gritty grinding from one that's starting to seize. A failing bearing can also produce an intermittent wobble sound.",
+    "repair_steps": [
+      "Engine off — grab each pulley and spin it by hand, feeling for roughness, grinding, or side-to-side wobble",
+      "Fire up the engine and use a stethoscope to pin down exactly which pulley is making the noise",
+      "Use the tensioner release tool to slip the serpentine belt off",
+      "Unbolt and remove the noisy pulley",
+      "Press the old bearing out with a puller, then press a new one in — or just bolt on a whole new pulley assembly",
+      "Hold a straightedge across the pulleys to check alignment",
+      "Reinstall the belt and verify the noise is cured.\n\nRequired Tools: Serpentine belt tool, mechanic's stethoscope, bearing puller/press, socket set, straightedge, torque wrench"
+    ],
+    "required_tools": []
+  },
+  "Normal Healthy Engine": {
+    "fault_name": "Normal Healthy Engine",
+    "description": "No fault detected. The engine audio signature matches normal healthy operation.",
+    "severity": "Safe",
+    "priority": 0,
+    "safe_to_drive": true,
+    "driving_instruction": "Engine sounds healthy. Continue normal operation.",
+    "possible_causes": [],
+    "recommended_actions": [
+      "Continue regular scheduled maintenance",
+      "Check oil level monthly",
+      "Follow manufacturer service intervals"
+    ],
+    "risks_if_ignored": [],
+    "repair_cost_min": 0,
+    "repair_cost_max": 0,
+    "repair_notes": "No repair needed. Maintain regular service schedule.",
+    "urgency_hours": null,
+    "mechanic_description": "No fault detected. The engine audio signature matches normal healthy operation.",
+    "root_causes_detailed": [],
+    "when_it_appears": "",
+    "sound_analysis": "No abnormal sound detected — engine audio matches healthy baseline.",
+    "repair_steps": [],
+    "required_tools": []
+  }
+}

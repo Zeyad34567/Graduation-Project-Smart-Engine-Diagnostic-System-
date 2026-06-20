@@ -1,0 +1,29 @@
+{
+  "model_type": "ood_gate_rf_v1",
+  "model_version": "ood_gate_rf_v1",
+  "n_features": 418,
+  "ood_threshold": 0.3,
+  "label_in_dist": 0,
+  "label_ood": 1,
+  "ood_categories": [
+    "Birds",
+    "Cats",
+    "Dogs",
+    "Door",
+    "Footsteps",
+    "Rain",
+    "Silence",
+    "Sirens",
+    "Thunder",
+    "Traffic",
+    "Wind"
+  ],
+  "test_accuracy": 0.9991,
+  "oob_score": 0.9997,
+  "roc_auc": 1.0,
+  "ood_recall_at_threshold": 0.999,
+  "false_rejection_rate": 0.0008,
+  "sample_rate": 22050,
+  "duration_sec": 5,
+  "target_samples": 110250
+}
