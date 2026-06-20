@@ -1,6 +1,6 @@
-# app6
+# Application
 
-## Flutter Mobile App (app6/)
+## Flutter Mobile App (Application)
 
 
 
