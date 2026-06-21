@@ -165,7 +165,7 @@ class AudioFeatures {
     final centroid  = _spectralCentroid(magFrames, nFft, numFrames);
     final bandwidth = _spectralBandwidth(magFrames, centroid, nFft, numFrames);
     final rolloff   = _spectralRolloff(magFrames, numFftBins, numFrames);
-    final flatness  = _spectralFlatness(magFrames, numFrames);
+    final flatness  = _spectralFlatness(powFrames, numFrames);  // power, not magnitude
     final contrast  = _spectralContrast(magFrames, nFft, numFrames);  // FIX-4 inside
     final zcr       = _zeroCrossingRate(audio, hop, numFrames);  // edge-padded internally, frame_length=2048
     final rms       = _rmsEnergy(paddedAudio, hop, numFrames);   // zero-padded (paddedAudio), frame_length=2048
@@ -230,14 +230,30 @@ class AudioFeatures {
   // ══════════════════════════════════════════════════════════════════════════
 
   /// FIX-3: 10·log₁₀(power_mel + ε) — matches librosa.power_to_db(ref=1.0).
+  /// Matches librosa.power_to_db(S, ref=1.0, amin=1e-10, top_db=80.0)
+  /// EXACTLY, including the default top_db floor — every value is clamped
+  /// to (global_max_db − 80) across the WHOLE matrix. Missing this floor
+  /// lets quiet bins plunge much further negative than librosa allows,
+  /// which was silently distorting many MFCC coefficients.
   static List<List<double>> _powerToDbFrames(
       List<List<double>> melMatrix, int numFrames) {
-    const double eps = 1e-10;
+    const double amin  = 1e-10;
+    const double topDb = 80.0;
     final nBins = melMatrix.length;
     final out = List.generate(numFrames, (_) => List<double>.filled(nBins, 0.0));
+    double globalMax = double.negativeInfinity;
     for (int m = 0; m < nBins; m++) {
       for (int t = 0; t < numFrames; t++) {
-        out[t][m] = 10.0 * (log(melMatrix[m][t] + eps) / ln10);
+        final s  = melMatrix[m][t];
+        final db = 10.0 * (log(s < amin ? amin : s) / ln10); // ref=1.0
+        out[t][m] = db;
+        if (db > globalMax) globalMax = db;
+      }
+    }
+    final floor = globalMax - topDb;
+    for (int t = 0; t < numFrames; t++) {
+      for (int m = 0; m < nBins; m++) {
+        if (out[t][m] < floor) out[t][m] = floor;
       }
     }
     return out;
@@ -329,41 +345,103 @@ class AudioFeatures {
   // SPECTRAL FEATURES
   // ══════════════════════════════════════════════════════════════════════════
 
-  /// FIX-4: quantile=0.02 (was 0.20) and power_to_db contrast formula.
+  /// Faithful port of librosa.feature.spectral_contrast. Differs from a
+  /// naive per-band binning in three important ways that materially change
+  /// the output:
+  ///   1. Band edges are fmin·2^i (NOT clamped to sr/2 for the last band) —
+  ///      the last band instead explicitly extends to include every
+  ///      remaining bin up to Nyquist.
+  ///   2. Adjacent bands OVERLAP by one bin: each band (except the first)
+  ///      borrows the bin just below its lower edge, and each band (except
+  ///      the last) drops its own highest bin (which becomes the next
+  ///      band's borrowed bin). This is librosa's literal implementation,
+  ///      not an approximation.
+  ///   3. peak/valley are converted to dB via power_to_db(ref=1.0,
+  ///      top_db=80) applied to the WHOLE (7×T) matrix at once — same
+  ///      top_db floor bug class as the mel features, fixed here too.
   static List<List<double>> _spectralContrast(
       List<List<double>> magFrames, int nFft, int numFrames) {
-    // Band edges: fmin=200, 6 octave bands → [0,200], [200,400], [400,800],
-    //             [800,1600], [1600,3200], [3200,6400], [6400, sr/2]
-    // Matches librosa default: fmin=200, n_bands=6.
-    final bandEdges = [200.0, 400.0, 800.0, 1600.0, 3200.0, 6400.0, sampleRate / 2.0];
-    const double quantile = 0.02;  // FIX-4: was 0.20
-    final contrast = List.generate(nContrast, (_) => List<double>.filled(numFrames, 0.0));
-    for (int t = 0; t < numFrames; t++) {
-      final frame = magFrames[t];
-      double prevHz = 0.0;
-      for (int b = 0; b < nContrast; b++) {
-        final lowBin  = (prevHz * nFft / sampleRate).round().clamp(0, frame.length - 1);
-        final highBin = (bandEdges[b] * nFft / sampleRate).round().clamp(0, frame.length - 1);
-        prevHz = bandEdges[b];
-        if (highBin <= lowBin) { contrast[b][t] = 0.0; continue; }
-        final band = List<double>.from(frame.sublist(lowBin, highBin + 1))..sort();
-        final nPct   = max(1, (band.length * quantile).round());  // FIX-4
-        double valleySum = 0.0;
-        for (int i = 0; i < nPct; i++) valleySum += band[i];
-        final valley = valleySum / nPct;
-        double peakSum = 0.0;
-        for (int i = band.length - nPct; i < band.length; i++) peakSum += band[i];
-        final peak = peakSum / nPct;
-        // FIX-4: power_to_db style (10·log₁₀), using MAGNITUDE directly
-        // (NOT squared) — librosa's spectral_contrast feeds raw magnitude
-        // peak/valley into power_to_db without squaring first (power=1
-        // spectrogram). Squaring here would double every value vs training.
-        contrast[b][t] =
-            10.0 * (log(peak + 1e-10) / ln10) -
-            10.0 * (log(valley + 1e-10) / ln10);
+    const double fmin     = 200.0;
+    const int    nBands   = 6; // -> nContrast = 7 output bands
+    const double quantile = 0.02;
+    final numFftBins = nFft ~/ 2 + 1;
+
+    // octa = [0, fmin·2^0, fmin·2^1, ..., fmin·2^nBands]  (nBands+2 values)
+    final octa = List<double>.generate(
+        nBands + 2, (i) => i == 0 ? 0.0 : fmin * pow(2.0, i - 1));
+
+    final freqs = List<double>.generate(
+        numFftBins, (k) => k * sampleRate / nFft.toDouble());
+
+    // Transpose to [bin][frame] for per-band column sorting.
+    final S = List.generate(numFftBins,
+        (k) => List<double>.generate(numFrames, (t) => magFrames[t][k]));
+
+    final valley = List.generate(nContrast, (_) => List<double>.filled(numFrames, 0.0));
+    final peak   = List.generate(nContrast, (_) => List<double>.filled(numFrames, 0.0));
+
+    for (int k = 0; k < nContrast; k++) {
+      final fLow  = octa[k];
+      final fHigh = octa[k + 1];
+      final mask = List<bool>.generate(
+          numFftBins, (i) => freqs[i] >= fLow && freqs[i] <= fHigh);
+
+      final idx = <int>[];
+      for (int i = 0; i < numFftBins; i++) if (mask[i]) idx.add(i);
+      if (idx.isEmpty) continue;
+
+      if (k > 0 && idx[0] - 1 >= 0) mask[idx[0] - 1] = true;
+      if (k == nBands) {
+        for (int i = idx.last + 1; i < numFftBins; i++) mask[i] = true;
+      }
+
+      final bandBins = <int>[];
+      for (int i = 0; i < numFftBins; i++) if (mask[i]) bandBins.add(i);
+      if (k < nBands && bandBins.isNotEmpty) bandBins.removeLast();
+
+      final nBin = bandBins.length;
+      if (nBin == 0) continue;
+      final nQuantile = max(1, (quantile * nBin).round());
+
+      for (int t = 0; t < numFrames; t++) {
+        final vals = List<double>.generate(nBin, (i) => S[bandBins[i]][t])..sort();
+        double vSum = 0.0;
+        for (int i = 0; i < nQuantile; i++) vSum += vals[i];
+        valley[k][t] = vSum / nQuantile;
+        double pSum = 0.0;
+        for (int i = nBin - nQuantile; i < nBin; i++) pSum += vals[i];
+        peak[k][t] = pSum / nQuantile;
       }
     }
-    return contrast;
+
+    final peakDb   = _powerToDbRef1(peak);
+    final valleyDb = _powerToDbRef1(valley);
+    return List.generate(nContrast,
+        (k) => List.generate(numFrames, (t) => peakDb[k][t] - valleyDb[k][t]));
+  }
+
+  /// librosa.power_to_db(S, ref=1.0, amin=1e-10, top_db=80.0) — generic,
+  /// operates over the WHOLE matrix regardless of orientation.
+  static List<List<double>> _powerToDbRef1(List<List<double>> mat) {
+    const double amin  = 1e-10;
+    const double topDb = 80.0;
+    double globalMax = double.negativeInfinity;
+    final out = mat.map((row) => List<double>.filled(row.length, 0.0)).toList();
+    for (int i = 0; i < mat.length; i++) {
+      for (int j = 0; j < mat[i].length; j++) {
+        final s  = mat[i][j];
+        final db = 10.0 * (log(s < amin ? amin : s) / ln10);
+        out[i][j] = db;
+        if (db > globalMax) globalMax = db;
+      }
+    }
+    final floor = globalMax - topDb;
+    for (int i = 0; i < out.length; i++) {
+      for (int j = 0; j < out[i].length; j++) {
+        if (out[i][j] < floor) out[i][j] = floor;
+      }
+    }
+    return out;
   }
 
   static List<double> _spectralCentroid(
@@ -420,20 +498,25 @@ class AudioFeatures {
     return out;
   }
 
+  /// Matches librosa.feature.spectral_flatness defaults EXACTLY: internally
+  /// uses power=2.0, i.e. operates on the POWER spectrogram (magnitude²),
+  /// NOT raw magnitude. [frames] here must be power, not magnitude.
   static List<double> _spectralFlatness(
-      List<List<double>> magFrames, int numFrames) {
+      List<List<double>> powerFrames, int numFrames) {
+    const double amin = 1e-10;
     final out = List<double>.filled(numFrames, 0.0);
     for (int t = 0; t < numFrames; t++) {
-      final frame = magFrames[t];
+      final frame = powerFrames[t];
       final n = frame.length;
       double logSum = 0.0, arithSum = 0.0;
       for (int k = 0; k < n; k++) {
-        logSum   += log(frame[k] + 1e-10);
-        arithSum += frame[k];
+        final s = frame[k] < amin ? amin : frame[k];
+        logSum   += log(s);
+        arithSum += s;
       }
       final geoMean   = exp(logSum / n);
       final arithMean = arithSum / n;
-      out[t] = arithMean > 1e-8 ? geoMean / arithMean : 0.0;
+      out[t] = geoMean / (arithMean + 1e-300); // matches np.finfo(...).tiny denom guard
     }
     return out;
   }
@@ -585,14 +668,30 @@ class AudioFeatures {
       }
     }
 
-    // ── mel_db = 10 * log10(mel / max(mel))  (ref=np.max) ────────────────
-    double globalMax = 1e-10;
+    // ── mel_db = librosa.power_to_db(mel, ref=np.max) ─────────────────────
+    // EXACT formula: db = 10·log10(max(amin,S)) − 10·log10(max(amin,refMax)),
+    // then floor every value to (own_max − 80)  [top_db=80 default].
+    const double amin = 1e-10;
+    double globalMaxPow = double.negativeInfinity;
     for (final row in melMatrix) {
-      for (final v in row) if (v > globalMax) globalMax = v;
+      for (final v in row) if (v > globalMaxPow) globalMaxPow = v;
     }
+    final refDb = 10.0 * (log(globalMaxPow < amin ? amin : globalMaxPow) / ln10);
+
+    final melDbRaw = List.generate(melBins, (m) {
+      return List<double>.generate(numFrames, (t) {
+        final s = melMatrix[m][t];
+        return 10.0 * (log(s < amin ? amin : s) / ln10) - refDb;
+      });
+    });
+    double rawMax = double.negativeInfinity;
+    for (final row in melDbRaw) {
+      for (final v in row) if (v > rawMax) rawMax = v;
+    }
+    final dbFloor = rawMax - 80.0;
     final melDb = List.generate(melBins, (m) {
-      return List<double>.generate(numFrames,
-          (t) => 10.0 * (log(melMatrix[m][t] / globalMax + 1e-10) / ln10));
+      return List<double>.generate(
+          numFrames, (t) => melDbRaw[m][t] < dbFloor ? dbFloor : melDbRaw[m][t]);
     });
 
     // ── Sub-band average: [128][T] → [16][T] ─────────────────────────────
