@@ -3,3 +3,6 @@ build/
 .idea/
 *.iml
 *.log
+android/.gradle/
+ios/Pods/
+macos/Pods/
